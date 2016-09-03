@@ -3,9 +3,11 @@ import java.awt.GridLayout;
 
 import javax.swing.JFrame;
 
+import blocks.Blank;
 import blocks.Block;
 import blocks.ElectricFence;
 import blocks.Mho;
+import blocks.Player;
 
 public class Container extends JFrame {
 	
@@ -19,10 +21,12 @@ public class Container extends JFrame {
 	
 	public Container() {
 		this.initJFrameMethods();
+		this.fillInBoard();
 		
-		for (int i = 0; i<144; i++) {
-			if (i%2==0) this.add(new Mho());
-			else this.add(new ElectricFence());
+		for (Block y[] : gameBlocks) {
+			for (Block x : y) {
+				this.add(x);
+			}
 		}
 	}
 	
@@ -41,6 +45,35 @@ public class Container extends JFrame {
 		this.setLayout(grid);
 	}
 	
+	/**
+	 * Interacts with the gameBlocks 2d array.
+	 */
+	private void fillInBoard() {
+		// Initialize everything with blank blocks
+		for (int x = 0; x < gameBlocks.length; x++) {
+			for (int y = 0; y < gameBlocks[0].length; y++) {
+				this.gameBlocks[y][x] = new Blank();
+			}
+		}
+		
+		// Draw the outside fences
+		for (int i = 0; i < gameBlocks.length; i++) {
+			// Draw on the left side
+			this.gameBlocks[i][0] = new ElectricFence();
+			// Draw on the right side
+			this.gameBlocks[i][gameBlocks[0].length-1] = new ElectricFence();
+		}
+		
+		for (int i = 0; i < gameBlocks[0].length; i++) {
+			// Draw on the top side
+			this.gameBlocks[0][i] = new ElectricFence();
+			// Draw on the bottom side
+			this.gameBlocks[gameBlocks.length-1][i] = new ElectricFence();
+		}
+
+		this.gameBlocks[3][1] = new Player();
+		
+	}
 	
 	
 }
