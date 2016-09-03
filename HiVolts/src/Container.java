@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.util.Random;
 
 import javax.swing.JFrame;
 
@@ -17,7 +18,7 @@ public class Container extends JFrame {
 	public final int NUM_COLUMNS = 12;
 	public final int NUM_ROWS = 12;
 	
-	private Block[][] gameBlocks = new Block[12][12];
+	private Block[][] gameBlocks = new Block[NUM_COLUMNS][NUM_ROWS];
 	
 	public Container() {
 		this.initJFrameMethods();
@@ -70,10 +71,37 @@ public class Container extends JFrame {
 			// Draw on the bottom side
 			this.gameBlocks[gameBlocks.length-1][i] = new ElectricFence();
 		}
-
-		this.gameBlocks[3][1] = new Player();
 		
+		// Add 20 random electric fences
+		for (int i = 0; i < 20; i++) {
+			int[] position = getUntakenPoint();
+			this.gameBlocks[position[1]][position[0]] = new ElectricFence();
+		}
+		
+		int[] playerPosition = getUntakenPoint();
+		this.gameBlocks[playerPosition[1]][playerPosition[0]] = new Player();
+		
+		for (int i = 0; i < 12; i++) {
+			int[] mhoPos = getUntakenPoint();
+			this.gameBlocks[mhoPos[1]][mhoPos[0]] = new Mho();
+		}
 	}
 	
+	/**
+	 * NOTE: RETURNS X,Y.  This needs to be changed to 
+	 * Y,X when indexing.
+	 */
+	private int[] getUntakenPoint() {
+		int x_rand = 0;
+		int y_rand = 0;
+		// Run until a blank square is found
+		while (!(gameBlocks[y_rand][x_rand] instanceof Blank)) {
+			Random r = new Random();
+			x_rand = r.nextInt(NUM_ROWS);
+			y_rand = r.nextInt(NUM_COLUMNS);
+		}
+		
+		return new int[]{x_rand,y_rand};
+	}
 	
 }
