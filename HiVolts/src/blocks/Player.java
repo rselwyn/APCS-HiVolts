@@ -1,6 +1,5 @@
+package blocks;
 import java.awt.Graphics;
-
-import blocks.Block;
 
 public class Player extends Block {
 

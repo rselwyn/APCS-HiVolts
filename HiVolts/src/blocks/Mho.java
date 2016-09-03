@@ -2,27 +2,28 @@ package blocks;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.util.Random;
+import java.awt.Graphics2D;
+import java.awt.geom.QuadCurve2D;
 
 public class Mho extends Block {
 
 	@Override
 	public void fillInBlock(Graphics g) {
-		// TODO Auto-generated method stub
+		// Draw the mho
+		g.setColor(Color.ORANGE);
+		g.fillOval(7, 7, 36, 36);
 		
-	}
-
-	
-	@Override
-	public void paint(Graphics g) {
-		Random r = new Random();
-		int rr = r.nextInt(255);
-		int gg = r.nextInt(255);
-		int bb = r.nextInt(255);
-		Color c = new Color(rr, gg, bb);
+		// Draw the eyes
+		g.setColor(Color.BLACK);
+		g.fillOval(13, 15, 11, 11);
 		
-		g.setColor(c);
-		g.fillRect(0, 0, 100, 100);
+		g.setColor(Color.BLACK);
+		g.fillOval(26, 15, 11, 11);
+		
+		// Only g2d allows for line drawing
+		Graphics2D lineDrawer = (Graphics2D) g;
+		QuadCurve2D.Double curve = new QuadCurve2D.Double(15,35,25,25,35,35);
+		lineDrawer.draw(curve);
 	}
 	
 }
