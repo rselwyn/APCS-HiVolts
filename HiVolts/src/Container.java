@@ -124,40 +124,50 @@ public class Container extends JFrame implements KeyListener {
 		case 81:
 			//Q
 			this.movePlayer(-1, -1);
+			this.moveMhos();
 			break;
 		case 87:
 			//W
 			this.movePlayer(0, -1);
+			this.moveMhos();
 			break;
 		case 69:
 			//E
 			this.movePlayer(1, -1);
+			this.moveMhos();
 			break;
 		case 65:
 			//A
 			this.movePlayer(-1, 0);
+			this.moveMhos();
 			break;
 		case 83:
 			//S
+			this.moveMhos();
 			break;
 		case 68:
 			//D
 			this.movePlayer(1, 0);
+			this.moveMhos();
 			break;
 		case 90:
 			//Z
 			this.movePlayer(-1, 1);
+			this.moveMhos();
 			break;
 		case 88:
 			//X
 			this.movePlayer(0, 1);
+			this.moveMhos();
 			break;
 		case 67:
 			//C
 			this.movePlayer(1, 1);
+			this.moveMhos();
 			break;
 		case 74:
 			//J
+			this.moveMhos();
 			break;
 		default:
 			System.out.println("Unknown key");
@@ -177,6 +187,10 @@ public class Container extends JFrame implements KeyListener {
 			this.drawElements();
 			this.repaint();
 		}
+	}
+	
+	public void moveMhos() {
+		
 	}
 	
 	public boolean isOverlapping(int x, int y) {
