@@ -167,15 +167,16 @@ public class Container extends JFrame implements KeyListener {
  	}
 
 	public void movePlayer(int x, int y) {
-		gameBlocks[GlobalReferences.PLAYER_POSITION[1]][GlobalReferences.PLAYER_POSITION[0]] = new Blank();
 		if (this.isOverlapping(x, y)) {
 			this.gameOver();
+		} else {
+			gameBlocks[GlobalReferences.PLAYER_POSITION[1]][GlobalReferences.PLAYER_POSITION[0]] = new Blank();
+			gameBlocks[GlobalReferences.PLAYER_POSITION[1] + y][GlobalReferences.PLAYER_POSITION[0] + x] = new Player();
+			GlobalReferences.PLAYER_POSITION[1] += y;
+			GlobalReferences.PLAYER_POSITION[0] += x;
+			this.drawElements();
+			this.repaint();
 		}
-		gameBlocks[GlobalReferences.PLAYER_POSITION[1] + y][GlobalReferences.PLAYER_POSITION[0] + x] = new Player();
-		GlobalReferences.PLAYER_POSITION[1] += y;
-		GlobalReferences.PLAYER_POSITION[0] += x;
-		this.drawElements();
-		this.repaint();
 	}
 	
 	public boolean isOverlapping(int x, int y) {
