@@ -134,47 +134,38 @@ public class Container extends JFrame implements KeyListener {
 		switch (e.getKeyCode()) {
 		case 81:
 			//Q
-			this.movePlayer(-1, -1);
-			this.moveMhos();
+			this.movePlayer(-1, -1);		
 			break;
 		case 87:
 			//W
-			this.movePlayer(0, -1);
-			this.moveMhos();
+			this.movePlayer(0, -1);	
 			break;
 		case 69:
 			//E
 			this.movePlayer(1, -1);
-			this.moveMhos();
 			break;
 		case 65:
 			//A
-			this.movePlayer(-1, 0);
-			this.moveMhos();
+			this.movePlayer(-1, 0);		
 			break;
 		case 83:
-			//S
-			this.moveMhos();
+			//S		
 			break;
 		case 68:
 			//D
 			this.movePlayer(1, 0);
-			this.moveMhos();
 			break;
 		case 90:
 			//Z
 			this.movePlayer(-1, 1);
-			this.moveMhos();
 			break;
 		case 88:
 			//X
 			this.movePlayer(0, 1);
-			this.moveMhos();
 			break;
 		case 67:
 			//C
 			this.movePlayer(1, 1);
-			this.moveMhos();
 			break;
 		case 74:
 			//J
@@ -184,6 +175,7 @@ public class Container extends JFrame implements KeyListener {
 			System.out.println(e.getKeyCode());
 			break;
 		}
+		this.moveMhos();
  	}
 
 	public void movePlayer(int x, int y) {
