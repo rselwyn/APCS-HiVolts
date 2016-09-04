@@ -1,8 +1,11 @@
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.Random;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import blocks.Blank;
 import blocks.Block;
@@ -10,7 +13,7 @@ import blocks.ElectricFence;
 import blocks.Mho;
 import blocks.Player;
 
-public class Container extends JFrame {
+public class Container extends JFrame implements KeyListener {
 	
 	public final int WIDTH = 700;
 	public final int HEIGHT = 700;
@@ -19,16 +22,12 @@ public class Container extends JFrame {
 	public final int NUM_ROWS = 12;
 	
 	private Block[][] gameBlocks = new Block[NUM_COLUMNS][NUM_ROWS];
+	private JPanel currentlyDisplayed = new JPanel();
 	
 	public Container() {
 		this.initJFrameMethods();
 		this.fillInBoard();
-		
-		for (Block y[] : gameBlocks) {
-			for (Block x : y) {
-				this.add(x);
-			}
-		}
+		this.drawElements();
 	}
 	
 	public void initJFrameMethods() {
@@ -38,12 +37,8 @@ public class Container extends JFrame {
 		setResizable(true);
 		setTitle("HiVolts");
 		setResizable(false);
-		
-		GridLayout grid = new GridLayout();
-		grid.setColumns(NUM_COLUMNS);
-		grid.setRows(NUM_ROWS);
-		
-		this.setLayout(grid);
+		addKeyListener(this);
+		this.currentlyDisplayed.setBackground(Color.BLACK);
 	}
 	
 	/**
@@ -80,11 +75,30 @@ public class Container extends JFrame {
 		
 		int[] playerPosition = getUntakenPoint();
 		this.gameBlocks[playerPosition[1]][playerPosition[0]] = new Player();
-		
+		GlobalReferences.PLAYER_POSITION = new int[]{playerPosition[0], playerPosition[1]};
 		for (int i = 0; i < 12; i++) {
 			int[] mhoPos = getUntakenPoint();
 			this.gameBlocks[mhoPos[1]][mhoPos[0]] = new Mho();
 		}
+	}
+	
+	public void drawElements() {
+		GridLayout grid = new GridLayout();
+		grid.setColumns(NUM_COLUMNS);
+		grid.setRows(NUM_ROWS);
+		
+		this.currentlyDisplayed.removeAll();
+		this.currentlyDisplayed.revalidate();
+		
+		this.currentlyDisplayed.setLayout(grid);
+		
+		for (Block y[] : gameBlocks) {
+			for (Block x : y) {
+				currentlyDisplayed.add(x);
+			}
+		}
+		
+		this.add(currentlyDisplayed);
 	}
 	
 	/**
@@ -103,5 +117,67 @@ public class Container extends JFrame {
 		
 		return new int[]{x_rand,y_rand};
 	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// Q
+		if (e.getKeyCode() == 81) {
+			this.movePlayer(-1, -1);
+		}
+		// W
+		else if (e.getKeyCode() == 87) {
+			this.movePlayer(0, -1);
+		}
+		// E
+		else if (e.getKeyCode() == 69) {
+			this.movePlayer(1, -1);
+		}
+		// A
+		else if (e.getKeyCode() == 65) {
+			this.movePlayer(-1, 0);
+		}
+		// S
+		else if (e.getKeyCode() == 83) {
+			
+		}
+		// D
+		else if (e.getKeyCode() == 68) {
+			this.movePlayer(1, 0);
+		}
+		// Z
+		else if (e.getKeyCode() == 90) {
+			this.movePlayer(-1, 1);
+		}
+		// X
+		else if (e.getKeyCode() == 88) {
+			this.movePlayer(0, 1);
+		}
+		// C
+		else if (e.getKeyCode() == 67) {
+			this.movePlayer(1, 1);
+		}
+		// J
+		else if (e.getKeyCode() == 74) {
+			
+		}
+		else {
+			System.out.println("Unknown key");
+			System.out.println(e.getKeyCode());
+		}
+ 	}
+
+	public void movePlayer(int x, int y) {
+		gameBlocks[GlobalReferences.PLAYER_POSITION[1]][GlobalReferences.PLAYER_POSITION[0]] = new Blank();
+		gameBlocks[GlobalReferences.PLAYER_POSITION[1] + y][GlobalReferences.PLAYER_POSITION[0] + x] = new Player();
+		GlobalReferences.PLAYER_POSITION[1] += y;
+		GlobalReferences.PLAYER_POSITION[0] += x;
+		this.drawElements();
+		this.repaint();
+	}
+	
+	// Unused methods
+	public void keyReleased(KeyEvent e) {}
+	
+	public void keyTyped(KeyEvent e) {}
 	
 }
