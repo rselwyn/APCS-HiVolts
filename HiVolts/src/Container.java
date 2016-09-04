@@ -192,6 +192,16 @@ public class Container extends JFrame implements KeyListener {
 	
 	public void gameOver() {
 		System.out.println("Game Over");
+		this.drawGameOverElements();
+	}
+	
+	public void drawGameOverElements() {
+		GameOverFrame frame = new GameOverFrame();
+		frame.setSize(WIDTH, HEIGHT);
+		frame.getContentPane().setBackground(Color.BLACK);
+		frame.setVisible(true);
+		this.setVisible(false);
+		this.dispose();
 	}
 	
 	public void won() {
