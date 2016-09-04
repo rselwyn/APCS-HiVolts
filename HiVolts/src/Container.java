@@ -176,6 +176,25 @@ public class Container extends JFrame implements KeyListener {
 		this.repaint();
 	}
 	
+	public boolean isOverlapping() {
+		//Checks if there is an Mho in the current position of the player
+		if (this.gameBlocks[GlobalReferences.PLAYER_POSITION[1]][GlobalReferences.PLAYER_POSITION[0]] instanceof Mho) {
+			return true;
+		} else if (this.gameBlocks[GlobalReferences.PLAYER_POSITION[1]][GlobalReferences.PLAYER_POSITION[0]] instanceof ElectricFence) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public void gameOver() {
+		System.out.println("Game Over");
+	}
+	
+	public void won() {
+		System.out.println("You've won!");
+	}
+	
 	// Unused methods
 	public void keyReleased(KeyEvent e) {}
 	
