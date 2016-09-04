@@ -136,7 +136,8 @@ public class Container extends JFrame implements KeyListener {
 		else if (e.getKeyCode() == 65) {
 			this.movePlayer(-1, 0);
 		}
-		// S
+		// S: Player does not move
+		//This else clause should not be included
 		else if (e.getKeyCode() == 83) {
 			
 		}
