@@ -120,55 +120,57 @@ public class Container extends JFrame implements KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		// Q
-		if (e.getKeyCode() == 81) {
+		switch (e.getKeyCode()) {
+		case 81:
+			//Q
 			this.movePlayer(-1, -1);
-		}
-		// W
-		else if (e.getKeyCode() == 87) {
+			break;
+		case 87:
+			//W
 			this.movePlayer(0, -1);
-		}
-		// E
-		else if (e.getKeyCode() == 69) {
+			break;
+		case 69:
+			//E
 			this.movePlayer(1, -1);
-		}
-		// A
-		else if (e.getKeyCode() == 65) {
+			break;
+		case 65:
+			//A
 			this.movePlayer(-1, 0);
-		}
-		// S: Player does not move
-		//This else clause should not be included
-		else if (e.getKeyCode() == 83) {
-			
-		}
-		// D
-		else if (e.getKeyCode() == 68) {
+			break;
+		case 83:
+			//S
+			break;
+		case 68:
+			//D
 			this.movePlayer(1, 0);
-		}
-		// Z
-		else if (e.getKeyCode() == 90) {
+			break;
+		case 90:
+			//Z
 			this.movePlayer(-1, 1);
-		}
-		// X
-		else if (e.getKeyCode() == 88) {
+			break;
+		case 88:
+			//X
 			this.movePlayer(0, 1);
-		}
-		// C
-		else if (e.getKeyCode() == 67) {
+			break;
+		case 67:
+			//C
 			this.movePlayer(1, 1);
-		}
-		// J
-		else if (e.getKeyCode() == 74) {
-			
-		}
-		else {
+			break;
+		case 74:
+			//J
+			break;
+		default:
 			System.out.println("Unknown key");
 			System.out.println(e.getKeyCode());
+			break;
 		}
  	}
 
 	public void movePlayer(int x, int y) {
 		gameBlocks[GlobalReferences.PLAYER_POSITION[1]][GlobalReferences.PLAYER_POSITION[0]] = new Blank();
+		if (this.isOverlapping(x, y)) {
+			this.gameOver();
+		}
 		gameBlocks[GlobalReferences.PLAYER_POSITION[1] + y][GlobalReferences.PLAYER_POSITION[0] + x] = new Player();
 		GlobalReferences.PLAYER_POSITION[1] += y;
 		GlobalReferences.PLAYER_POSITION[0] += x;
@@ -176,11 +178,11 @@ public class Container extends JFrame implements KeyListener {
 		this.repaint();
 	}
 	
-	public boolean isOverlapping() {
+	public boolean isOverlapping(int x, int y) {
 		//Checks if there is an Mho in the current position of the player
-		if (this.gameBlocks[GlobalReferences.PLAYER_POSITION[1]][GlobalReferences.PLAYER_POSITION[0]] instanceof Mho) {
+		if (this.gameBlocks[GlobalReferences.PLAYER_POSITION[1] + y][GlobalReferences.PLAYER_POSITION[0] + x] instanceof Mho) {
 			return true;
-		} else if (this.gameBlocks[GlobalReferences.PLAYER_POSITION[1]][GlobalReferences.PLAYER_POSITION[0]] instanceof ElectricFence) {
+		} else if (this.gameBlocks[GlobalReferences.PLAYER_POSITION[1] + y][GlobalReferences.PLAYER_POSITION[0] + x] instanceof ElectricFence) {
 			return true;
 		} else {
 			return false;
