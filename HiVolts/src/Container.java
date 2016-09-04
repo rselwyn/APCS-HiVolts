@@ -117,6 +117,17 @@ public class Container extends JFrame implements KeyListener {
 		
 		return new int[]{x_rand,y_rand};
 	}
+	
+	private int[] getRandomPoint() {
+		int x_rand = 0;
+		int y_rand = 0;
+			
+		Random r = new Random();
+		x_rand = r.nextInt(NUM_ROWS);
+		y_rand = r.nextInt(NUM_COLUMNS);
+		
+		return new int[]{x_rand,y_rand};
+	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
@@ -167,7 +178,6 @@ public class Container extends JFrame implements KeyListener {
 			break;
 		case 74:
 			//J
-			this.moveMhos();
 			break;
 		default:
 			System.out.println("Unknown key");
@@ -190,7 +200,55 @@ public class Container extends JFrame implements KeyListener {
 	}
 	
 	public void moveMhos() {
+		for (int i = 0; i < this.gameBlocks.length; i++) {
+			for (int j = 0; j < this.gameBlocks[i].length; j++) {
+				if (this.gameBlocks[i][j] instanceof Mho) {
+					this.gameBlocks[i][j] = new Blank();
+				}
+			}
+		}
 		
+		for (int i = 0; i < 12; i++) {
+			//Used the getRandomPoint method, because the Mhos cannot just go into an empty space. They also have a chance of hitting a fence.
+			int[] mhoPos = getRandomPoint();
+			if (this.gameBlocks[mhoPos[1]][mhoPos[0]] instanceof ElectricFence) {
+				//An Mho collided with a fence
+				this.gameBlocks[mhoPos[1]][mhoPos[0]] = new ElectricFence();
+			} else if (this.gameBlocks[mhoPos[1]][mhoPos[0]] instanceof Player) {
+				//An Mho collided with the player
+				this.gameOver();
+			} else if (this.gameBlocks[mhoPos[1]][mhoPos[0]] instanceof Blank) {
+				//An Mho went to blank spot
+				this.gameBlocks[mhoPos[1]][mhoPos[0]] = new Mho();
+			} else {
+				//An Mho collided with another Mho
+				this.gameBlocks[mhoPos[1]][mhoPos[0]] = new Blank();
+			}
+		}
+		
+		if (checkForMhos()) {
+			this.won();
+		} else {
+			this.drawElements();
+			this.repaint();
+		}
+	}
+	
+	public boolean checkForMhos() {
+		int mhoCount = 0;
+		for (int i = 0; i < this.gameBlocks.length; i++) {
+			for (int j = 0; j < this.gameBlocks[i].length; j++) {
+				if (this.gameBlocks[i][j] instanceof Mho == false) {
+					mhoCount++;
+				}
+			}
+		}
+		
+		if (mhoCount == 0) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	public boolean isOverlapping(int x, int y) {
@@ -226,5 +284,4 @@ public class Container extends JFrame implements KeyListener {
 	public void keyReleased(KeyEvent e) {}
 	
 	public void keyTyped(KeyEvent e) {}
-	
 }
