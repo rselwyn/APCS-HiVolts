@@ -1,4 +1,5 @@
 import java.awt.Color;
+
 import java.awt.GridLayout;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -150,6 +151,7 @@ public class Container extends JFrame implements KeyListener {
 			break;
 		case 83:
 			//S		
+			this.movePlayer(0, 0);
 			break;
 		case 68:
 			//D
@@ -175,6 +177,7 @@ public class Container extends JFrame implements KeyListener {
 			System.out.println(e.getKeyCode());
 			break;
 		}
+
 		this.moveMhos();
  	}
 
@@ -195,35 +198,30 @@ public class Container extends JFrame implements KeyListener {
 		for (int i = 0; i < this.gameBlocks.length; i++) {
 			for (int j = 0; j < this.gameBlocks[i].length; j++) {
 				if (this.gameBlocks[i][j] instanceof Mho) {
-					this.gameBlocks[i][j] = new Blank();
+					// If they are vertically aligned
+					if (j == GlobalReferences.PLAYER_POSITION[0]) {
+						System.out.println(i);
+						System.out.println(GlobalReferences.PLAYER_POSITION[1]);
+						if (i > GlobalReferences.PLAYER_POSITION[1]) {
+							// mho is lower on screen
+							this.gameBlocks[i][j] = new Blank();
+							this.gameBlocks[--i][j] = new Mho();
+							i++;
+						}
+						else {
+							System.out.println("Alternate");
+							this.gameBlocks[i][j] = new Blank();
+							this.gameBlocks[++i][j] = new Mho();
+						}
+					}
 				}
+				
+				
 			}
 		}
-		
-		for (int i = 0; i < 12; i++) {
-			//Used the getRandomPoint method, because the Mhos cannot just go into an empty space. They also have a chance of hitting a fence.
-			int[] mhoPos = getRandomPoint();
-			if (this.gameBlocks[mhoPos[1]][mhoPos[0]] instanceof ElectricFence) {
-				//An Mho collided with a fence
-				this.gameBlocks[mhoPos[1]][mhoPos[0]] = new ElectricFence();
-			} else if (this.gameBlocks[mhoPos[1]][mhoPos[0]] instanceof Player) {
-				//An Mho collided with the player
-				this.gameOver();
-			} else if (this.gameBlocks[mhoPos[1]][mhoPos[0]] instanceof Blank) {
-				//An Mho went to blank spot
-				this.gameBlocks[mhoPos[1]][mhoPos[0]] = new Mho();
-			} else {
-				//An Mho collided with another Mho
-				this.gameBlocks[mhoPos[1]][mhoPos[0]] = new Blank();
-			}
-		}
-		
-		if (checkForMhos()) {
-			this.won();
-		} else {
-			this.drawElements();
-			this.repaint();
-		}
+
+		this.drawElements();
+		this.repaint();
 	}
 	
 	public boolean checkForMhos() {

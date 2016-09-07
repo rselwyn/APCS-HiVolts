@@ -30,7 +30,7 @@ public class GameOverFrame extends JFrame {
 	}
 	
 	public void exit() {
-		this.setVisible(false);
+		System.exit(1);
 	}
 	
 	public void playAgain() {
