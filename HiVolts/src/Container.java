@@ -200,8 +200,6 @@ public class Container extends JFrame implements KeyListener {
 				if (this.gameBlocks[i][j] instanceof Mho) {
 					// If they are vertically aligned
 					if (j == GlobalReferences.PLAYER_POSITION[0]) {
-						System.out.println(i);
-						System.out.println(GlobalReferences.PLAYER_POSITION[1]);
 						if (i > GlobalReferences.PLAYER_POSITION[1]) {
 							// mho is lower on screen
 							this.gameBlocks[i][j] = new Blank();
@@ -213,7 +211,24 @@ public class Container extends JFrame implements KeyListener {
 							this.gameBlocks[i][j] = new Blank();
 							this.gameBlocks[++i][j] = new Mho();
 						}
+						break; //we have made the move for the mho, now exit
 					}
+					// Horizontal alignment implemented here
+					if (i == GlobalReferences.PLAYER_POSITION[1]) {
+						if (j > GlobalReferences.PLAYER_POSITION[0]) {
+							// mho is lower on screen
+							this.gameBlocks[i][j] = new Blank();
+							this.gameBlocks[i][--j] = new Mho();
+							i++;
+						}
+						else {
+							System.out.println("Alternate");
+							this.gameBlocks[i][j] = new Blank();
+							this.gameBlocks[i][++j] = new Mho();
+						}
+						break; //we have made the move for the mho, now exit
+					}
+					
 				}
 				
 				
