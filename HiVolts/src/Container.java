@@ -118,17 +118,7 @@ public class Container extends JFrame implements KeyListener {
 		
 		return new int[]{x_rand,y_rand};
 	}
-	
-	private int[] getRandomPoint() {
-		int x_rand = 0;
-		int y_rand = 0;
-			
-		Random r = new Random();
-		x_rand = r.nextInt(NUM_ROWS);
-		y_rand = r.nextInt(NUM_COLUMNS);
-		
-		return new int[]{x_rand,y_rand};
-	}
+
 
 	@Override
 	public void keyPressed(KeyEvent e) {
@@ -214,7 +204,7 @@ public class Container extends JFrame implements KeyListener {
 						break; //we have made the move for the mho, now exit
 					}
 					// Horizontal alignment implemented here
-					if (i == GlobalReferences.PLAYER_POSITION[1]) {
+					else if (i == GlobalReferences.PLAYER_POSITION[1]) {
 						if (j > GlobalReferences.PLAYER_POSITION[0]) {
 							// mho is lower on screen
 							this.gameBlocks[i][j] = new Blank();
@@ -228,6 +218,39 @@ public class Container extends JFrame implements KeyListener {
 						}
 						break; //we have made the move for the mho, now exit
 					}
+					// If not horizontal or vertical
+					else {
+						// Test for diagonal
+						System.out.println(i+","+j);
+						System.out.println(GlobalReferences.PLAYER_POSITION[1] + "," + GlobalReferences.PLAYER_POSITION[0]);
+						if (i > GlobalReferences.PLAYER_POSITION[1]) {
+							if (j > GlobalReferences.PLAYER_POSITION[0]) {
+								// Move up left and up one
+								this.gameBlocks[i][j] = new Blank();
+								this.gameBlocks[--i][--j] = new Mho();
+								System.out.println("A");
+							}
+							else {
+								this.gameBlocks[i][j] = new Blank();
+								this.gameBlocks[--i][++j] = new Mho();
+								System.out.println("B");
+							}
+						}
+						else {
+							if (j > GlobalReferences.PLAYER_POSITION[0]) {
+								this.gameBlocks[i][j] = new Blank();
+								this.gameBlocks[++i][--j] = new Mho();
+								System.out.println("C");
+							}
+							else {
+								this.gameBlocks[i][j] = new Blank();
+								this.gameBlocks[++i][++j] = new Mho();
+								System.out.println("D");
+							}
+						}
+					}
+				
+					
 					
 				}
 				
