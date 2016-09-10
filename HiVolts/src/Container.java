@@ -160,7 +160,7 @@ public class Container extends JFrame implements KeyListener {
 			this.movePlayer(1, 1);
 			break;
 		case 74:
-			//J
+			this.jump();
 			break;
 		default:
 			System.out.println("Unknown key");
@@ -170,6 +170,16 @@ public class Container extends JFrame implements KeyListener {
 
 		this.moveMhos();
  	}
+	
+	public void jump() {
+		this.gameBlocks[GlobalReferences.PLAYER_POSITION[1]][GlobalReferences.PLAYER_POSITION[0]] = new Blank();
+		int[] newPosition = this.getUntakenPoint();
+		this.gameBlocks[newPosition[1]][newPosition[0]] = new Player();
+		GlobalReferences.PLAYER_POSITION[1] = newPosition[1];
+		GlobalReferences.PLAYER_POSITION[0] = newPosition[0];
+		this.drawElements();
+		this.repaint();
+	}
 
 	public void movePlayer(int x, int y) {
 		if (this.isOverlapping(x, y)) {
@@ -193,12 +203,18 @@ public class Container extends JFrame implements KeyListener {
 						if (i > GlobalReferences.PLAYER_POSITION[1]) {
 							// mho is lower on screen
 							this.gameBlocks[i][j] = new Blank();
+							if (this.gameBlocks[i-1][j] instanceof ElectricFence) {
+								break;
+							}
 							this.gameBlocks[--i][j] = new Mho();
 							i++;
 						}
 						else {
 							System.out.println("Alternate");
 							this.gameBlocks[i][j] = new Blank();
+							if (this.gameBlocks[i+1][j] instanceof ElectricFence) {
+								break;
+							}
 							this.gameBlocks[++i][j] = new Mho();
 						}
 						break; //we have made the move for the mho, now exit
@@ -208,12 +224,18 @@ public class Container extends JFrame implements KeyListener {
 						if (j > GlobalReferences.PLAYER_POSITION[0]) {
 							// mho is lower on screen
 							this.gameBlocks[i][j] = new Blank();
+							if (this.gameBlocks[i][j-1] instanceof ElectricFence) {
+								break;
+							}
 							this.gameBlocks[i][--j] = new Mho();
 							i++;
 						}
 						else {
 							System.out.println("Alternate");
 							this.gameBlocks[i][j] = new Blank();
+							if (this.gameBlocks[i][j+1] instanceof ElectricFence) {
+								break;
+							}
 							this.gameBlocks[i][++j] = new Mho();
 						}
 						break; //we have made the move for the mho, now exit
