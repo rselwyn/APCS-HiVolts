@@ -30,7 +30,7 @@ public class GameOverFrame extends JFrame {
 	}
 	
 	public void exit() {
-		System.exit(1);
+		this.setVisible(false);
 	}
 	
 	public void playAgain() {
@@ -40,11 +40,6 @@ public class GameOverFrame extends JFrame {
 	}
 	
 	public void addUIElements(Graphics g) {
-		g.setColor(Color.RED);
-		g.setFont(new Font("TimesRoman", Font.PLAIN, 50)); 
-		g.drawString("GAME OVER", 200, 200);
-		
-		
 		JButton exitButton = new JButton("Exit");
 		exitButton.setLayout(null);
 		exitButton.setBounds(60, 400, 220, 30);
