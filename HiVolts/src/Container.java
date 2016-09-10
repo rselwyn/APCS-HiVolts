@@ -77,7 +77,7 @@ public class Container extends JFrame implements KeyListener {
 		int[] playerPosition = getUntakenPoint();
 		this.gameBlocks[playerPosition[1]][playerPosition[0]] = new Player();
 		GlobalReferences.PLAYER_POSITION = new int[]{playerPosition[0], playerPosition[1]};
-		for (int i = 0; i < 12; i++) {
+		for (int i = 0; i < 1; i++) {
 			int[] mhoPos = getUntakenPoint();
 			this.gameBlocks[mhoPos[1]][mhoPos[0]] = new Mho();
 		}
@@ -221,16 +221,27 @@ public class Container extends JFrame implements KeyListener {
 					// If not horizontal or vertical
 					else {
 						// Test for diagonal
-						System.out.println(i+","+j);
-						System.out.println(GlobalReferences.PLAYER_POSITION[1] + "," + GlobalReferences.PLAYER_POSITION[0]);
+						boolean can_go_a = !(this.gameBlocks[i-1][j-1] instanceof ElectricFence);
+						boolean can_go_b = !(this.gameBlocks[i-1][j+1] instanceof ElectricFence);
+						boolean can_go_c = !(this.gameBlocks[i+1][j-1] instanceof ElectricFence);
+						boolean can_go_d = !(this.gameBlocks[i+1][j+1] instanceof ElectricFence);
+						
 						if (i > GlobalReferences.PLAYER_POSITION[1]) {
 							if (j > GlobalReferences.PLAYER_POSITION[0]) {
+								if (!can_go_a) {
+									this.needsToMoveNotDiagonal(i, j);
+									break;
+								}
 								// Move up left and up one
 								this.gameBlocks[i][j] = new Blank();
 								this.gameBlocks[--i][--j] = new Mho();
 								System.out.println("A");
 							}
 							else {
+								if (!can_go_b) {
+									this.needsToMoveNotDiagonal(i, j);
+									break;
+								}
 								this.gameBlocks[i][j] = new Blank();
 								this.gameBlocks[--i][++j] = new Mho();
 								System.out.println("B");
@@ -238,11 +249,19 @@ public class Container extends JFrame implements KeyListener {
 						}
 						else {
 							if (j > GlobalReferences.PLAYER_POSITION[0]) {
+								if (!can_go_c) {
+									this.needsToMoveNotDiagonal(i, j);
+									break;
+								}
 								this.gameBlocks[i][j] = new Blank();
 								this.gameBlocks[++i][--j] = new Mho();
 								System.out.println("C");
 							}
 							else {
+								if (!can_go_d) {
+									this.needsToMoveNotDiagonal(i, j);
+									break;
+								}
 								this.gameBlocks[i][j] = new Blank();
 								this.gameBlocks[++i][++j] = new Mho();
 								System.out.println("D");
@@ -260,6 +279,45 @@ public class Container extends JFrame implements KeyListener {
 
 		this.drawElements();
 		this.repaint();
+	}
+	
+	public void needsToMoveNotDiagonal(int i, int j) {
+		// Horizontal distance is greater than vertial distance
+		int dHeight = Math.abs(GlobalReferences.PLAYER_POSITION[1] - i);
+		int dWidth = Math.abs(GlobalReferences.PLAYER_POSITION[0] - j);
+		
+		// If width is greater than height
+		if (dWidth > dHeight) {
+			if (GlobalReferences.PLAYER_POSITION[1] >= i) {
+				i--;
+				this.gameBlocks[i][j] = new Mho();
+				this.gameBlocks[++i][j] = new Blank();
+				System.out.println("A'");
+			}
+			else {
+				i++;
+				this.gameBlocks[i][j] = new Mho();
+				this.gameBlocks[--i][j] = new Blank();
+				System.out.println("B'");
+			}
+		}
+		else {
+			// Height is greater than width
+			if (GlobalReferences.PLAYER_POSITION[0] > j) {
+				j++;
+				this.gameBlocks[i][j] = new Mho();
+				this.gameBlocks[i][--j] = new Blank();
+				System.out.println("C'");
+			}
+			else {
+				j--;
+				this.gameBlocks[i][j] = new Mho();
+				this.gameBlocks[i][++j] = new Blank();
+				System.out.println("D'");
+			}
+		}
+		this.repaint();
+		this.drawElements();
 	}
 	
 	public boolean checkForMhos() {
