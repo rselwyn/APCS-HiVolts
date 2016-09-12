@@ -332,13 +332,17 @@ public class Container extends JFrame implements KeyListener {
 		if (dWidth > dHeight) {
 			if (GlobalReferences.PLAYER_POSITION[1] >= i) {
 				i--;
-				this.gameBlocks[i][j] = new Mho();
+				if (!(this.gameBlocks[i][j] instanceof ElectricFence)) {
+					this.gameBlocks[i][j] = new Mho();
+				}
 				this.gameBlocks[++i][j] = new Blank();
 				System.out.println("A'");
 			}
 			else {
 				i++;
-				this.gameBlocks[i][j] = new Mho();
+				if (!(this.gameBlocks[i][j] instanceof ElectricFence)) {
+					this.gameBlocks[i][j] = new Mho();
+				}
 				this.gameBlocks[--i][j] = new Blank();
 				System.out.println("B'");
 			}
@@ -347,13 +351,17 @@ public class Container extends JFrame implements KeyListener {
 			// Height is greater than width
 			if (GlobalReferences.PLAYER_POSITION[0] > j) {
 				j++;
-				this.gameBlocks[i][j] = new Mho();
+				if (!(this.gameBlocks[i][j] instanceof ElectricFence)) {
+					this.gameBlocks[i][j] = new Mho();
+				}
 				this.gameBlocks[i][--j] = new Blank();
 				System.out.println("C'");
 			}
 			else {
 				j--;
-				this.gameBlocks[i][j] = new Mho();
+				if (!(this.gameBlocks[i][j] instanceof ElectricFence)) {
+					this.gameBlocks[i][j] = new Mho();
+				}
 				this.gameBlocks[i][++j] = new Blank();
 				System.out.println("D'");
 			}
