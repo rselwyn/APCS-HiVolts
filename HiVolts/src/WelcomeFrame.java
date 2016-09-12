@@ -107,6 +107,7 @@ public class WelcomeFrame extends JFrame {
 	public void paint(Graphics g) {
 		this.drawWelcomeLabel(g);
 		this.drawElements();
+		
 	}
 	
 	/**
@@ -116,20 +117,23 @@ public class WelcomeFrame extends JFrame {
 		this.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				int x = e.getX();
-				
-				CustomButton playbtn = new CustomButton("Play!", Color.ORANGE, 150, 50, 100, 500);
-				CustomButton exitBtn = new CustomButton("Exit", Color.ORANGE, 150, 50, 450, 500);
-				
-				double playBtnX = playBtn.getBounds().getX();
-				double exitBtnX = exitBtn.getBounds().getX();
-				
-				//Checks whether the user clicks within the bounds of the playBtn.
-				if ((x >= playBtnX) && (x <= playBtnX + playBtn.getWidth())) {
-					playOnClick();
-				} else if ((x >= exitBtnX) && (x <= exitBtnX + exitBtn.getWidth())) {
-					exitOnClick();
+				int widthOfBoth = 150;
+				int heightOfBoth = 50;
+				// Play button
+				if (e.getX() < widthOfBoth+100 && e.getX() > 100) {
+					if (e.getY() < heightOfBoth + 525 && e.getY() > 525) {
+						playOnClick();
+					}
 				}
+				
+				// Exit Button
+				if (e.getX() < widthOfBoth+450 && e.getX() > 450) {
+					if (e.getY() < heightOfBoth + 525 && e.getY() > 525) {
+						exitOnClick();
+					}
+				}
+				
+				
 			}
 		});
 	}
@@ -140,6 +144,8 @@ public class WelcomeFrame extends JFrame {
 	}
 	
 	public void exitOnClick() {
+		System.out.println("F");
 		this.setVisible(false);
+		System.exit(1);
 	}
 }
