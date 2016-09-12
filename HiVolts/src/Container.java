@@ -122,6 +122,7 @@ public class Container extends JFrame implements KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
+		System.out.println(e.getKeyCode());
 		switch (e.getKeyCode()) {
 		case 81:
 			//Q
@@ -130,6 +131,22 @@ public class Container extends JFrame implements KeyListener {
 		case 87:
 			//W
 			this.movePlayer(0, -1);	
+			break;
+		case 37:
+			// Left arrow
+			this.movePlayer(-1,0);
+			break;
+		case 38:
+			// up
+			this.movePlayer(0, -1);
+			break;
+		case 39:
+			// Right arrow
+			this.movePlayer(1, 0);
+			break;
+		case 40:
+			// Down
+			this.movePlayer(0, 1);
 			break;
 		case 69:
 			//E
@@ -163,9 +180,8 @@ public class Container extends JFrame implements KeyListener {
 			this.jump();
 			break;
 		default:
-			System.out.println("Unknown key");
 			System.out.println(e.getKeyCode());
-			break;
+			return;
 		}
 
 		this.moveMhos();
@@ -297,6 +313,10 @@ public class Container extends JFrame implements KeyListener {
 				
 				
 			}
+		}
+		
+		if (this.gameBlocks[GlobalReferences.PLAYER_POSITION[1]][GlobalReferences.PLAYER_POSITION[0]] instanceof Mho) {
+			this.gameOver();
 		}
 
 		this.drawElements();
