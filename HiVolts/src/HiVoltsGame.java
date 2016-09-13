@@ -1,3 +1,4 @@
+import frames.WelcomeFrame;
 
 public class HiVoltsGame {
 	public static void main(String[] args) {

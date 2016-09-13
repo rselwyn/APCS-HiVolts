@@ -1,3 +1,4 @@
+package frames;
 import java.awt.Color;
 
 import java.awt.GridLayout;
@@ -8,6 +9,7 @@ import java.util.Random;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import util.GlobalReferences;
 import blocks.Blank;
 import blocks.Block;
 import blocks.ElectricFence;

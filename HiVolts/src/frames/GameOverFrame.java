@@ -1,3 +1,4 @@
+package frames;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridLayout;
@@ -15,7 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JLabel;
 import java.awt.BorderLayout;
 
-public class WelcomeFrame extends JFrame {
+public class GameOverFrame extends JFrame {
 	public final int NUM_COLUMNS = 12;
 	public final int NUM_ROWS = 12;
 
@@ -25,7 +26,7 @@ public class WelcomeFrame extends JFrame {
 	private CustomButton playBtn;
 	private CustomButton exitBtn;
 	
-	public WelcomeFrame() {
+	public GameOverFrame() {
 		this.init();
 	}
 	
@@ -86,7 +87,7 @@ public class WelcomeFrame extends JFrame {
 	}
 	
 	public void drawWelcomeLabel(Graphics g) {
-		JLabel welcomeLabel = new JLabel("Welcome", JLabel.CENTER);
+		JLabel welcomeLabel = new JLabel("Game Over", JLabel.CENTER);
 		welcomeLabel.setLayout(null);
 		welcomeLabel.setBounds(500, 200, 220, 30);
 		welcomeLabel.setFont(new Font("GillSans", Font.PLAIN, 50)); 
