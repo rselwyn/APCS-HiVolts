@@ -39,7 +39,6 @@ public class WelcomeFrame extends JFrame {
 		this.setResizable(false);
 		
 		this.currentlyDisplayed.setBackground(Color.BLACK);
-		
 		this.createFence();
 		this.drawElements();	
 		this.addMouseListener();

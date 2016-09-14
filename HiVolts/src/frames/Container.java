@@ -1,7 +1,8 @@
 package frames;
 import java.awt.Color;
-
+import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Random;
@@ -121,7 +122,23 @@ public class Container extends JFrame implements KeyListener {
 		return new int[]{x_rand,y_rand};
 	}
 
-
+	/**
+	 * NOTE: RETURNS X,Y.  This needs to be changed to 
+	 * Y,X when indexing.
+	 */
+	private int[] getJumpablePoint() {
+		int x_rand = 0;
+		int y_rand = 0;
+		// Run until a blank square is found
+		while (!(gameBlocks[y_rand][x_rand] instanceof Blank) && !(gameBlocks[y_rand][x_rand] instanceof Mho)) {
+			Random r = new Random();
+			x_rand = r.nextInt(NUM_ROWS);
+			y_rand = r.nextInt(NUM_COLUMNS);
+		}
+		
+		return new int[]{x_rand,y_rand};
+	}
+	
 	@Override
 	public void keyPressed(KeyEvent e) {
 		System.out.println(e.getKeyCode());
@@ -180,7 +197,7 @@ public class Container extends JFrame implements KeyListener {
 			break;
 		case 74:
 			this.jump();
-			break;
+			return;
 		default:
 			System.out.println(e.getKeyCode());
 			return;
@@ -191,7 +208,10 @@ public class Container extends JFrame implements KeyListener {
 	
 	public void jump() {
 		this.gameBlocks[GlobalReferences.PLAYER_POSITION[1]][GlobalReferences.PLAYER_POSITION[0]] = new Blank();
-		int[] newPosition = this.getUntakenPoint();
+		int[] newPosition = this.getJumpablePoint();
+		if (this.gameBlocks[newPosition[1]][newPosition[0]] instanceof Mho) {
+			this.gameOver();
+		}
 		this.gameBlocks[newPosition[1]][newPosition[0]] = new Player();
 		GlobalReferences.PLAYER_POSITION[1] = newPosition[1];
 		GlobalReferences.PLAYER_POSITION[0] = newPosition[0];
