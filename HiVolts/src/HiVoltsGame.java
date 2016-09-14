@@ -7,5 +7,4 @@ public class HiVoltsGame {
 		frame.setSize(700, 700);
 		frame.setVisible(true);
 	}
-
 }

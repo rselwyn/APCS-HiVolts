@@ -306,7 +306,7 @@ public class Container extends JFrame implements KeyListener {
 								this.gameBlocks[--i][++j] = new Mho();
 								System.out.println("B");
 							}
-						}
+						} 
 						else {
 							if (j > GlobalReferences.PLAYER_POSITION[0]) {
 								if (!can_go_c) {
@@ -328,12 +328,7 @@ public class Container extends JFrame implements KeyListener {
 							}
 						}
 					}
-				
-					
-					
 				}
-				
-				
 			}
 		}
 		
@@ -421,12 +416,11 @@ public class Container extends JFrame implements KeyListener {
 	}
 	
 	public void gameOver() {
-		System.out.println("Game Over");
 		this.drawGameOverElements();
 	}
 	
 	public void drawGameOverElements() {
-		GameOverFrame frame = new GameOverFrame();
+		GameOverFrame frame = new GameOverFrame(0);
 		frame.setSize(WIDTH, HEIGHT);
 		frame.getContentPane().setBackground(Color.BLACK);
 		frame.setVisible(true);
@@ -435,7 +429,16 @@ public class Container extends JFrame implements KeyListener {
 	}
 	
 	public void won() {
-		System.out.println("You've won!");
+		this.drawWinElements();
+	}
+	
+	public void drawWinElements() {
+		GameOverFrame frame = new GameOverFrame(1);
+		frame.setSize(WIDTH, HEIGHT);
+		frame.getContentPane().setBackground(Color.BLACK);
+		frame.setVisible(true);
+		this.setVisible(false);
+		this.dispose();
 	}
 	
 	// Unused methods

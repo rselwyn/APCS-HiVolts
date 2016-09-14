@@ -26,7 +26,10 @@ public class GameOverFrame extends JFrame {
 	private CustomButton playBtn;
 	private CustomButton exitBtn;
 	
-	public GameOverFrame() {
+	public int gameStatus;
+	
+	public GameOverFrame(int gameStatus) {
+		this.gameStatus = gameStatus;
 		this.init();
 	}
 	
@@ -86,7 +89,14 @@ public class GameOverFrame extends JFrame {
 	}
 	
 	public void drawWelcomeLabel(Graphics g) {
-		JLabel welcomeLabel = new JLabel("Game Over", JLabel.CENTER);
+		JLabel welcomeLabel = new JLabel();
+		
+		if (this.gameStatus == 0) {
+			welcomeLabel = new JLabel("You Lost!", JLabel.CENTER);
+		} else {
+			welcomeLabel = new JLabel("You Won!", JLabel.CENTER);
+		}
+		
 		welcomeLabel.setLayout(null);
 		welcomeLabel.setBounds(500, 200, 220, 30);
 		welcomeLabel.setFont(new Font("GillSans", Font.PLAIN, 50)); 
@@ -132,8 +142,6 @@ public class GameOverFrame extends JFrame {
 						exitOnClick();
 					}
 				}
-				
-				
 			}
 		});
 	}
