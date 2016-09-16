@@ -69,6 +69,7 @@ public class GameOverFrame extends JFrame {
 		}
 	}
 	
+	
 	public void drawElements() {
 		GridLayout grid = new GridLayout();
 		grid.setColumns(NUM_COLUMNS);

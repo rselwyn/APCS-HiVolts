@@ -2,9 +2,13 @@ package frames;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Random;
 
 import javax.swing.JFrame;
@@ -71,10 +75,9 @@ public class Container extends JFrame implements KeyListener {
 			this.gameBlocks[gameBlocks.length-1][i] = new ElectricFence();
 		}
 		
-		// Add 20 random electric fences
-		for (int i = 0; i < 20; i++) {
-			int[] position = getUntakenPoint();
-			this.gameBlocks[position[1]][position[0]] = new ElectricFence();
+		Point[] setPoints = getOpenPoints(20);
+		for (Point p : setPoints) {
+			this.gameBlocks[p.x][p.y] = new ElectricFence();
 		}
 		
 		int[] playerPosition = getUntakenPoint();
@@ -84,6 +87,34 @@ public class Container extends JFrame implements KeyListener {
 			int[] mhoPos = getUntakenPoint();
 			this.gameBlocks[mhoPos[1]][mhoPos[0]] = new Mho();
 		}
+	}
+	
+
+	/**
+	 * Efficient algorithm explanation:
+	 * 
+	 * This algorithm works as follows.  First, iterate over the grid
+	 * and select all empty squares.  This step is O(n).  After that, perform a fisher-yates shuffle 
+	 * over the array in O(n), and return the first "numberOf" positions.
+	 * 
+	 * @param numberOf:	number of points to return
+	 * @return	randomly chosen points
+	 */
+	public Point[] getOpenPoints(int numberOf) {
+		ArrayList<Point> pointsAvailable = new ArrayList<Point>();
+		
+		
+		for (int i = 0; i<this.NUM_COLUMNS; i++) {
+			for (int j = 0; j<this.NUM_ROWS; j++) {
+				if(!(this.gameBlocks[i][j] instanceof ElectricFence)) {
+					pointsAvailable.add(new Point(i,j));
+				}
+			}
+		}
+		
+		// Fisher-Yates shuffle
+		Collections.shuffle(pointsAvailable);
+		return Arrays.copyOfRange(pointsAvailable.toArray(new Point[pointsAvailable.size()]),0,numberOf);
 	}
 	
 	public void drawElements() {
