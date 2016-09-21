@@ -366,6 +366,9 @@ public class Container extends JFrame implements KeyListener {
 		if (this.gameBlocks[GlobalReferences.PLAYER_POSITION[1]][GlobalReferences.PLAYER_POSITION[0]] instanceof Mho) {
 			this.gameOver();
 		}
+		else if (this.checkForMhos()) {
+			this.drawWinElements();
+		}
 
 		this.drawElements();
 		this.repaint();
@@ -422,7 +425,7 @@ public class Container extends JFrame implements KeyListener {
 		int mhoCount = 0;
 		for (int i = 0; i < this.gameBlocks.length; i++) {
 			for (int j = 0; j < this.gameBlocks[i].length; j++) {
-				if (this.gameBlocks[i][j] instanceof Mho == false) {
+				if (this.gameBlocks[i][j] instanceof Mho == true) {
 					mhoCount++;
 				}
 			}
