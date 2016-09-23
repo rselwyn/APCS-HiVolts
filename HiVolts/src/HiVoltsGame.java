@@ -1,8 +1,13 @@
 import frames.WelcomeFrame;
 
 public class HiVoltsGame {
+	
+	/**
+	 * Main link to the program.  Instantiates the 
+	 * welcome frame, sets its size, and makes it visible.
+	 * @param args
+	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		WelcomeFrame frame = new WelcomeFrame();
 		frame.setSize(700, 700);
 		frame.setVisible(true);

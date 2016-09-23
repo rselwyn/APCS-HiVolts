@@ -5,6 +5,14 @@ import java.awt.Graphics;
 
 import javax.swing.JComponent;
 
+/**
+ * Abstract class that all blocks will extend.  THis
+ * extends JComponent, so its subclasses can be displayed
+ * on the screen.  The method paint() is final, so that
+ * subclasses can not override it.  Instead, they interact with
+ * the graphics window through the fillInBlock abstract method, which
+ * is called inside of the paint method.
+ */
 public abstract class Block extends JComponent {
 	
 	public int WIDTH = 50;

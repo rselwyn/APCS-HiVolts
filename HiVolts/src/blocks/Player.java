@@ -6,6 +6,10 @@ import java.awt.geom.QuadCurve2D;
 
 public class Player extends Block {
 
+	/**
+	 * Very similar to the mho, but the colors
+	 * are changed to represent the player.
+	 */
 	@Override
 	public void fillInBlock(Graphics g) {
 		// TODO Auto-generated method stub

@@ -5,6 +5,9 @@ import java.awt.Graphics;
 
 public class ElectricFence extends Block {
 
+	/**
+	 * Fills in the block with a fence shape
+	 */
 	@Override
 	public void fillInBlock(Graphics g) {
 		// Draw the fence side posts

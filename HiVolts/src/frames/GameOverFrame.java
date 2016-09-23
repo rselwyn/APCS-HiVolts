@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import blocks.Blank;
 import blocks.Block;
 import blocks.ElectricFence;
+import util.GlobalReferences;
 
 import javax.swing.JButton;
 import java.awt.event.*;
@@ -93,10 +94,23 @@ public class GameOverFrame extends JFrame {
 		JLabel welcomeLabel = new JLabel();
 		
 		if (this.gameStatus == 0) {
-			welcomeLabel = new JLabel("You Lost!", JLabel.CENTER);
+			if (GlobalReferences.NUM_MOVES!=1) {
+				welcomeLabel = new JLabel("You Lost in " + GlobalReferences.NUM_MOVES + " Moves!", JLabel.CENTER);
+			}
+			else {
+				welcomeLabel = new JLabel("You Lost in " + GlobalReferences.NUM_MOVES + " Move!", JLabel.CENTER);
+			}
 		} else {
-			welcomeLabel = new JLabel("You Won!", JLabel.CENTER);
+			if (GlobalReferences.NUM_MOVES!=1) {
+				welcomeLabel = new JLabel("You Won in " + GlobalReferences.NUM_MOVES + " Moves!", JLabel.CENTER);
+			}
+			else {
+				welcomeLabel = new JLabel("You Won in " + GlobalReferences.NUM_MOVES + " Move!", JLabel.CENTER);
+			}
 		}
+		
+		// Reset the NUM_MOVES variable
+		GlobalReferences.NUM_MOVES = 0;
 		
 		welcomeLabel.setLayout(null);
 		welcomeLabel.setBounds(500, 200, 220, 30);

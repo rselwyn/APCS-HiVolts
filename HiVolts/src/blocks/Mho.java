@@ -7,6 +7,10 @@ import java.awt.geom.QuadCurve2D;
 
 public class Mho extends Block {
 
+	/**
+	 * Draws a mho.  Also uses QuadCurve2D
+	 * to be able to draw the curved mho face.
+	 */
 	@Override
 	public void fillInBlock(Graphics g) {
 		// Draw the mho

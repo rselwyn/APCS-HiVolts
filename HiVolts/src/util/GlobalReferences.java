@@ -6,4 +6,5 @@ public class GlobalReferences {
 	 */
 	
 	public static int[] PLAYER_POSITION = new int[2];
+	public static int NUM_MOVES = 0;
 }
