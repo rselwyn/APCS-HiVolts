@@ -17,6 +17,7 @@ import javax.swing.JLabel;
 import java.awt.BorderLayout;
 
 public class WelcomeFrame extends JFrame {
+	
 	public final int NUM_COLUMNS = 12;
 	public final int NUM_ROWS = 12;
 
@@ -30,6 +31,9 @@ public class WelcomeFrame extends JFrame {
 		this.init();
 	}
 	
+	/**
+	 * Initializes the methods inherited.
+	 */
 	public void init() {
 		this.setSize(WIDTH, HEIGHT);
 		this.setBackground(Color.BLACK);
@@ -44,6 +48,9 @@ public class WelcomeFrame extends JFrame {
 		this.addMouseListener();
 	}
 	
+	/**
+	 * Creates the fence around the screen.
+	 */
 	public void createFence() {
 		for (int x = 0; x < gameBlocks.length; x++) {
 			for (int y = 0; y < gameBlocks[0].length; y++) {
@@ -66,6 +73,9 @@ public class WelcomeFrame extends JFrame {
 		}
 	}
 	
+	/**
+	 * Draws the elements onto the screen.
+	 */
 	public void drawElements() {
 		GridLayout grid = new GridLayout();
 		grid.setColumns(NUM_COLUMNS);
@@ -85,6 +95,10 @@ public class WelcomeFrame extends JFrame {
 		this.add(this.currentlyDisplayed);
 	}
 	
+	/**
+	 * Draws the welcome label onto the screen
+	 * @param g: The graphics object
+	 */
 	public void drawWelcomeLabel(Graphics g) {
 		JLabel welcomeLabel = new JLabel("Welcome", JLabel.CENTER);
 		welcomeLabel.setLayout(null);
@@ -103,6 +117,9 @@ public class WelcomeFrame extends JFrame {
 		this.revalidate();
 	}
 	
+	/**
+	 * Calls the existing methods.
+	 */
 	@Override
 	public void paint(Graphics g) {
 		this.drawWelcomeLabel(g);
@@ -111,7 +128,8 @@ public class WelcomeFrame extends JFrame {
 	}
 	
 	/**
-	 * This method implements the Mouse Listener
+	 * This method implements the Mouse Listener.  It works 
+	 * by listening for clicks in the places that the buttons are.
 	 */
 	public void addMouseListener() {
 		this.addMouseListener(new MouseAdapter() {
@@ -137,12 +155,19 @@ public class WelcomeFrame extends JFrame {
 			}
 		});
 	}
+	
+	/**
+	 * Starts the game
+	 */
 	public void playOnClick() {
 		Container c = new Container();
 		c.setVisible(true);
 		this.setVisible(false);
 	}
 	
+	/**
+	 * Closes out.
+	 */
 	public void exitOnClick() {
 		System.out.println("F");
 		this.setVisible(false);
