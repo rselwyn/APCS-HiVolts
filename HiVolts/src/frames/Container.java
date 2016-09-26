@@ -117,6 +117,9 @@ public class Container extends JFrame implements KeyListener {
 		return Arrays.copyOfRange(pointsAvailable.toArray(new Point[pointsAvailable.size()]),0,numberOf);
 	}
 	
+	/**
+	 * Draws the blocks that are in the array onto the screen.
+	 */
 	public void drawElements() {
 		GridLayout grid = new GridLayout();
 		grid.setColumns(NUM_COLUMNS);
@@ -170,6 +173,10 @@ public class Container extends JFrame implements KeyListener {
 		return new int[]{x_rand,y_rand};
 	}
 	
+	/**
+	 * Handles key presses 
+	 * @param e: the key press event
+	 */
 	@Override
 	public void keyPressed(KeyEvent e) {
 		System.out.println(e.getKeyCode());
@@ -245,10 +252,13 @@ public class Container extends JFrame implements KeyListener {
 			System.out.println(e.getKeyCode());
 			return;
 		}
-
+		// move the mhos at the end
 		this.moveMhos();
  	}
 	
+	/**
+	 * Chooses a random point and jumps to it.
+	 */
 	public void jump() {
 		this.gameBlocks[GlobalReferences.PLAYER_POSITION[1]][GlobalReferences.PLAYER_POSITION[0]] = new Blank();
 		int[] newPosition = this.getJumpablePoint();
@@ -262,6 +272,11 @@ public class Container extends JFrame implements KeyListener {
 		this.repaint();
 	}
 
+	/**
+	 * Moves the player in a given x and y direction
+	 * @param x: how far in the x direction
+	 * @param y: how far in the y direction
+	 */
 	public void movePlayer(int x, int y) {
 		if (this.isOverlapping(x, y)) {
 			this.gameOver();
@@ -275,6 +290,9 @@ public class Container extends JFrame implements KeyListener {
 		}
 	}
 	
+	/**
+	 * Handles mho movement
+	 */
 	public void moveMhos() {
 		for (int i = 0; i < this.gameBlocks.length; i++) {
 			for (int j = 0; j < this.gameBlocks[i].length; j++) {
@@ -386,6 +404,13 @@ public class Container extends JFrame implements KeyListener {
 		this.repaint();
 	}
 	
+	/**
+	 * This function is called when the mho is 
+	 * not in the same x or y and the mho 
+	 * cannot move diagonally.
+	 * @param i: the mho position x
+	 * @param j: the mho position y
+	 */
 	public void needsToMoveNotDiagonal(int i, int j) {
 		// Horizontal distance is greater than vertial distance
 		int dHeight = Math.abs(GlobalReferences.PLAYER_POSITION[1] - i);
@@ -433,6 +458,10 @@ public class Container extends JFrame implements KeyListener {
 		this.drawElements();
 	}
 	
+	/**
+	 * Counts the number of mhos on the screen
+	 * @return true if there are 0 mhos, else false
+	 */
 	public boolean checkForMhos() {
 		int mhoCount = 0;
 		for (int i = 0; i < this.gameBlocks.length; i++) {
@@ -450,6 +479,7 @@ public class Container extends JFrame implements KeyListener {
 		}
 	}
 	
+	
 	public boolean isOverlapping(int x, int y) {
 		//Checks if there is an Mho in the current position of the player
 		if (this.gameBlocks[GlobalReferences.PLAYER_POSITION[1] + y][GlobalReferences.PLAYER_POSITION[0] + x] instanceof Mho) {
@@ -461,10 +491,16 @@ public class Container extends JFrame implements KeyListener {
 		}
 	}
 	
+	/**
+	 * Called on game over
+	 */
 	public void gameOver() {
 		this.drawGameOverElements();
 	}
 	
+	/**
+	 * Draws the game over elements
+	 */
 	public void drawGameOverElements() {
 		GameOverFrame frame = new GameOverFrame(0);
 		frame.setSize(WIDTH, HEIGHT);
@@ -474,10 +510,16 @@ public class Container extends JFrame implements KeyListener {
 		this.dispose();
 	}
 	
+	/**
+	 * Draws the winning elements
+	 */
 	public void won() {
 		this.drawWinElements();
 	}
 	
+	/**
+	 * Draws the winning elements
+	 */
 	public void drawWinElements() {
 		GameOverFrame frame = new GameOverFrame(1);
 		frame.setSize(WIDTH, HEIGHT);

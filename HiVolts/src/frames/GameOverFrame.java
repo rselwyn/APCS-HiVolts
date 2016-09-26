@@ -34,6 +34,10 @@ public class GameOverFrame extends JFrame {
 		this.init();
 	}
 	
+	/**
+	 * Calls the methods inherited from the JFrame
+	 * superclass.
+	 */
 	public void init() {
 		this.setSize(WIDTH, HEIGHT);
 		this.setBackground(Color.BLACK);
@@ -70,7 +74,9 @@ public class GameOverFrame extends JFrame {
 		}
 	}
 	
-	
+	/**
+	 * Draws the blocks
+	 */
 	public void drawElements() {
 		GridLayout grid = new GridLayout();
 		grid.setColumns(NUM_COLUMNS);
@@ -90,6 +96,10 @@ public class GameOverFrame extends JFrame {
 		this.add(this.currentlyDisplayed);
 	}
 	
+	/**
+	 * Draws the welcome label
+	 * @param g: the graphics object
+	 */
 	public void drawWelcomeLabel(Graphics g) {
 		JLabel welcomeLabel = new JLabel();
 		
@@ -128,6 +138,9 @@ public class GameOverFrame extends JFrame {
 		this.revalidate();
 	}
 	
+	/**
+	 * Draws the elements
+	 */
 	@Override
 	public void paint(Graphics g) {
 		this.drawWelcomeLabel(g);
@@ -140,6 +153,7 @@ public class GameOverFrame extends JFrame {
 	 */
 	public void addMouseListener() {
 		this.addMouseListener(new MouseAdapter() {
+			
 			@Override
 			public void mousePressed(MouseEvent e) {
 				int widthOfBoth = 150;
@@ -160,12 +174,19 @@ public class GameOverFrame extends JFrame {
 			}
 		});
 	}
+	
+	/**
+	 * Starts the game
+	 */
 	public void playOnClick() {
 		Container c = new Container();
 		c.setVisible(true);
 		this.setVisible(false);
 	}
 	
+	/**
+	 * Exits the game
+	 */
 	public void exitOnClick() {
 		System.out.println("F");
 		this.setVisible(false);
