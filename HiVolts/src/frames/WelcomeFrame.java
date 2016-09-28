@@ -28,6 +28,10 @@ public class WelcomeFrame extends JFrame {
 	private CustomButton playBtn;
 	private CustomButton exitBtn;
 	
+	/**
+	 * Constructs an instance of WelcomeFrame and calls the init method, which 
+	 * initializes the methods inherited. 
+	 */
 	public WelcomeFrame() {
 		this.init();
 	}

@@ -20,13 +20,17 @@ public abstract class Block extends JComponent {
 	
 	public abstract void fillInBlock(Graphics g);
 	
+	/**
+	 * This is the default (no-args) constructor of this class, 
+	 * and it calls the repaint method.
+	 */
 	public Block() {
 		this.repaint();
 	}
 	
 	/**
 	 * Paint method that calls the method fillInBlock.  This is 
-	 * final because it should not be overridden.  YOu should implement
+	 * final because it should not be overridden.  You should implement
 	 * fillInBlock().
 	 */
 	@Override

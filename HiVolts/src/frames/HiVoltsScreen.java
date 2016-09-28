@@ -35,12 +35,19 @@ public class HiVoltsScreen extends JFrame implements KeyListener {
 	private Block[][] gameBlocks = new Block[NUM_COLUMNS][NUM_ROWS];
 	private JPanel currentlyDisplayed = new JPanel();
 	
+	/**
+	 * Constructs an instance of HiVoltsScreen and calls three various methods 
+	 * that are essential for displaying the initial game board.
+	 */
 	public HiVoltsScreen() {
 		this.initJFrameMethods();
 		this.fillInBoard();
 		this.drawElements();
 	}
 	
+	/**
+	 * Sets and calls the various JFrame methods, and is called in the constructor.
+	 */
 	public void initJFrameMethods() {
 		setSize(WIDTH, HEIGHT);
 		this.getContentPane().setBackground(Color.BLACK);

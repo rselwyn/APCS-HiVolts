@@ -36,6 +36,10 @@ public class CustomButton extends JComponent {
 		this.yVal = yVal;
 	}
 	
+	/**
+	 * Draws the custom button based on the properties set in the constructor.
+	 * This method is overridden from the superclass, JComponent.
+	 */
 	@Override
 	public void paintComponent(Graphics g) {
 		g.setColor(this.color);

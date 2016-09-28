@@ -30,6 +30,11 @@ public class GameOverFrame extends JFrame {
 	
 	public int gameStatus;
 	
+	/**
+	 * Constructs an instance of GameOverFrame, and sets the gameStatus property
+	 * based on the result of the previous game. 
+	 * @param gameStatus
+	 */
 	public GameOverFrame(int gameStatus) {
 		this.gameStatus = gameStatus;
 		this.init();
@@ -53,6 +58,9 @@ public class GameOverFrame extends JFrame {
 		this.addMouseListener();
 	}
 	
+	/**
+	 * Creates a series of 48 fences along the border of the frame. 
+	 */
 	public void createFence() {
 		for (int x = 0; x < gameBlocks.length; x++) {
 			for (int y = 0; y < gameBlocks[0].length; y++) {
