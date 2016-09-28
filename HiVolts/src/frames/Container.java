@@ -406,6 +406,8 @@ public class Container extends JFrame implements KeyListener {
 			this.drawWinElements();
 		}
 
+		this.gameBlocks[GlobalReferences.PLAYER_POSITION[1]][GlobalReferences.PLAYER_POSITION[0]] = new Player();
+		
 		this.drawElements();
 		this.repaint();
 	}
