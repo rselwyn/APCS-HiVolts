@@ -10,11 +10,8 @@ import blocks.Blank;
 import blocks.Block;
 import blocks.ElectricFence;
 
-import javax.swing.JButton;
 import java.awt.event.*;
-import javax.swing.JOptionPane;
 import javax.swing.JLabel;
-import java.awt.BorderLayout;
 
 /**
  * This class is the blueprint for the welcome frame that is displayed

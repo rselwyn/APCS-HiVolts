@@ -11,11 +11,8 @@ import blocks.Block;
 import blocks.ElectricFence;
 import util.GlobalReferences;
 
-import javax.swing.JButton;
 import java.awt.event.*;
-import javax.swing.JOptionPane;
 import javax.swing.JLabel;
-import java.awt.BorderLayout;
 
 /**
  * This class is the blueprint for the frame that is displayed when a game is complete. 
