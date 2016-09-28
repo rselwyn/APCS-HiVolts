@@ -17,6 +17,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JLabel;
 import java.awt.BorderLayout;
 
+/**
+ * This class is the blueprint for the frame that is displayed when a game is complete. 
+ * This class extends JFrame.
+ */
 public class GameOverFrame extends JFrame {
 	public final int NUM_COLUMNS = 12;
 	public final int NUM_ROWS = 12;

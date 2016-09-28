@@ -4,6 +4,11 @@ import java.awt.Graphics;
 import java.awt.Color;
 import java.awt.Font;
 
+/**
+ * This class is the blueprint for the custom buttons 
+ * that were utilized in the WelcomeFrame and GameOverFrame.
+ * This class extends JComponent.
+ */
 public class CustomButton extends JComponent {
 	
 	private String btnText;

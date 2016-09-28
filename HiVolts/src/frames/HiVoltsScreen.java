@@ -21,6 +21,11 @@ import blocks.ElectricFence;
 import blocks.Mho;
 import blocks.Player;
 
+/**
+ * This class is the main container of the game, and extends JFrame.
+ * In addition, this class implements the KeyListener interface, 
+ * which allows us to access various methods involved in the user's keystroke.
+ */
 public class HiVoltsScreen extends JFrame implements KeyListener {
 	
 	public final int WIDTH = 700;

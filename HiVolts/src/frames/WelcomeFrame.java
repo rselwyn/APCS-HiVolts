@@ -16,6 +16,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JLabel;
 import java.awt.BorderLayout;
 
+/**
+ * This class is the blueprint for the welcome frame that is displayed
+ * when the program first executes. In addition, it extends JFrame.
+ */
 public class WelcomeFrame extends JFrame {
 	
 	public final int NUM_COLUMNS = 12;
