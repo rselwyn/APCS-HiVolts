@@ -190,6 +190,12 @@ public class HiVoltsScreen extends JFrame implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		System.out.println(e.getKeyCode());
+		
+		/*
+		 * This switch statement switches on
+		 * the key codes.  Each keyCode has the letter
+		 * that it actually is as a comment below it.
+		 */
 		switch (e.getKeyCode()) {
 		case 81:
 			//Q
@@ -437,6 +443,7 @@ public class HiVoltsScreen extends JFrame implements KeyListener {
 		// If width is greater than height
 		if (dWidth > dHeight) {
 			if (GlobalReferences.PLAYER_POSITION[1] >= i) {
+				// move the player up
 				i--;
 				if (!(this.gameBlocks[i][j] instanceof ElectricFence)) {
 					this.gameBlocks[i][j] = new Mho();
@@ -445,6 +452,7 @@ public class HiVoltsScreen extends JFrame implements KeyListener {
 				System.out.println("A'");
 			}
 			else {
+				// move the player down
 				i++;
 				if (!(this.gameBlocks[i][j] instanceof ElectricFence)) {
 					this.gameBlocks[i][j] = new Mho();
@@ -456,6 +464,7 @@ public class HiVoltsScreen extends JFrame implements KeyListener {
 		else {
 			// Height is greater than width
 			if (GlobalReferences.PLAYER_POSITION[0] > j) {
+				// move the player right
 				j++;
 				if (!(this.gameBlocks[i][j] instanceof ElectricFence)) {
 					this.gameBlocks[i][j] = new Mho();
@@ -464,6 +473,7 @@ public class HiVoltsScreen extends JFrame implements KeyListener {
 				System.out.println("C'");
 			}
 			else {
+				// move the player left
 				j--;
 				if (!(this.gameBlocks[i][j] instanceof ElectricFence)) {
 					this.gameBlocks[i][j] = new Mho();
@@ -496,7 +506,13 @@ public class HiVoltsScreen extends JFrame implements KeyListener {
 		}
 	}
 	
-	
+	/**
+	 * Tells if the position the player is going to move to
+	 * is overlapping with a mho.
+	 * @param x	the amount the player is moving in the x direction
+	 * @param y the amount the player is moving in the y direction
+	 * @return a boolean whether or not the position is overlapping
+	 */
 	public boolean isOverlapping(int x, int y) {
 		//Checks if there is an Mho in the current position of the player
 		if (this.gameBlocks[GlobalReferences.PLAYER_POSITION[1] + y][GlobalReferences.PLAYER_POSITION[0] + x] instanceof Mho) {
@@ -546,7 +562,8 @@ public class HiVoltsScreen extends JFrame implements KeyListener {
 		this.dispose();
 	}
 	
-	// Unused methods
+	// Unused methods that need to have
+	// stubs because the class implements KeyListener
 	public void keyReleased(KeyEvent e) {}
 	
 	public void keyTyped(KeyEvent e) {}
