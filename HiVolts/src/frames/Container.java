@@ -291,7 +291,13 @@ public class Container extends JFrame implements KeyListener {
 	}
 	
 	/**
-	 * Handles mho movement
+	 * Handles all of the mho movement.  While it might seem complicated at first,
+	 * the algorithm is very simple:
+	 * 
+	 * First, move the mhos horizontally or vertically if they are in line with the player.
+	 * Second, try to move the mho diagonally towards the player.
+	 * Third, if that isn't possible, try and move horizontally or vertically towards
+	 * the player.
 	 */
 	public void moveMhos() {
 		for (int i = 0; i < this.gameBlocks.length; i++) {
@@ -471,7 +477,6 @@ public class Container extends JFrame implements KeyListener {
 				}
 			}
 		}
-		
 		if (mhoCount == 0) {
 			return true;
 		} else {
