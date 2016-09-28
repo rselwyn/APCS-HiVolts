@@ -160,7 +160,7 @@ public class WelcomeFrame extends JFrame {
 	 * Starts the game
 	 */
 	public void playOnClick() {
-		Container c = new Container();
+		HiVoltsScreen c = new HiVoltsScreen();
 		c.setVisible(true);
 		this.setVisible(false);
 	}

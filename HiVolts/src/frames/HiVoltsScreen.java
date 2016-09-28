@@ -21,7 +21,7 @@ import blocks.ElectricFence;
 import blocks.Mho;
 import blocks.Player;
 
-public class Container extends JFrame implements KeyListener {
+public class HiVoltsScreen extends JFrame implements KeyListener {
 	
 	public final int WIDTH = 700;
 	public final int HEIGHT = 700;
@@ -32,7 +32,7 @@ public class Container extends JFrame implements KeyListener {
 	private Block[][] gameBlocks = new Block[NUM_COLUMNS][NUM_ROWS];
 	private JPanel currentlyDisplayed = new JPanel();
 	
-	public Container() {
+	public HiVoltsScreen() {
 		this.initJFrameMethods();
 		this.fillInBoard();
 		this.drawElements();
