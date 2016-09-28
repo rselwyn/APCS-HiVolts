@@ -1,5 +1,10 @@
 package util;
 
+/**
+ * This class contains  variables that
+ * need to be available throughout the entire
+ * program.
+ */
 public class GlobalReferences {
 	/**
 	 * All int[] representing points are in the form x,y

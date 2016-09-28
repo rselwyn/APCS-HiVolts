@@ -1,5 +1,8 @@
 import frames.WelcomeFrame;
 
+/**
+ * Main Class.  See documentation for the main method.
+ */
 public class HiVoltsGame {
 	
 	/**

@@ -4,6 +4,11 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.QuadCurve2D;
 
+/**
+ * This is a class that represents the Player.
+ * It extends block so that it can be painted onto the
+ * screen.
+ */
 public class Player extends Block {
 
 	/**

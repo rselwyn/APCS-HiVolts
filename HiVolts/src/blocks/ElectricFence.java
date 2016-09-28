@@ -3,6 +3,11 @@ package blocks;
 import java.awt.Color;
 import java.awt.Graphics;
 
+/**
+ * ElectricFence block on the screen.  This
+ * extends Block so that it can be drawn onto the
+ * main screen.
+ */
 public class ElectricFence extends Block {
 
 	/**

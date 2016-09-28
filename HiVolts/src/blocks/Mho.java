@@ -5,6 +5,10 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.QuadCurve2D;
 
+/**
+ * Class that represents a Mho.  This extends block
+ * so that it can be drawn onto the grid.
+ */
 public class Mho extends Block {
 
 	/**

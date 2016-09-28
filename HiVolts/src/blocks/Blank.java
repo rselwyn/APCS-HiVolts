@@ -2,6 +2,10 @@ package blocks;
 
 import java.awt.Graphics;
 
+/**
+ * Blank block to be painted into the board.  This extends
+ * Block so that it can be drawn into the grid.
+ */
 public class Blank extends Block {
 
 	/**
